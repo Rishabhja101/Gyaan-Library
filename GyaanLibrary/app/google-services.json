@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "641600658427",
+    "firebase_url": "https://gyaan-library.firebaseio.com",
+    "project_id": "gyaan-library",
+    "storage_bucket": "gyaan-library.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641600658427:android:e9c23b791a18f298",
+        "android_client_info": {
+          "package_name": "com.example.risha.gyaanlibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641600658427-7e54176qq0i26spm2cpgsmfm49huj92m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.risha.gyaanlibrary",
+            "certificate_hash": "16ee226ed7f0cc7fb02b9d07ad78ccff05273704"
+          }
+        },
+        {
+          "client_id": "641600658427-cb69tphrokd19s7nlf82a45ss2an72pc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Caip8Er5DPrwQW9W62pbv_KgiVt-mgw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "641600658427-cb69tphrokd19s7nlf82a45ss2an72pc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
