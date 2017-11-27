@@ -13,6 +13,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -32,37 +37,50 @@ public class LoginActivity extends AppCompatActivity {
         password = passwordText.getText().toString();
     }
 
+    int userIndex;
+
     public void AttemptLogin(View view){
         GetCredentials();
-      //  Toast.makeText(LoginActivity.this, "asdfasdfasdfadsfasdf",
-      //          Toast.LENGTH_SHORT).show();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("username");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userIndex = 0;
+                String usernames[] = dataSnapshot.getValue().toString().split(",");
+                while (userIndex < usernames.length && !usernames[userIndex].equals(username)){
+                    userIndex++;
+                }
+            }
 
-        mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "Authentication not failed.",
-                                    Toast.LENGTH_SHORT).show();
-                  } else {
-                            // If sign in fails, display a message to the user.
-                         Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                      }
-                        Toast.makeText(LoginActivity.this, "Authentication somewhat failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+        myRef = database.getReference("password");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String passwords[] = dataSnapshot.getValue().toString().split(",");
+                if (userIndex < passwords.length && passwords[userIndex].equals(password)){
+                    Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
     }
 
     public void CreateUser(View view){
         GetCredentials();
-        Toast.makeText(LoginActivity.this, "asdfsdafsdafadsfghtyrkjyutmkyuilyuilkuiykyuik.",
-                Toast.LENGTH_SHORT).show();
+        Toast.makeText(LoginActivity.this, "asdfsdafsdafadsfghtyrkjyutmkyuilyuilkuiykyuik.", Toast.LENGTH_SHORT).show();
     }
 
 
