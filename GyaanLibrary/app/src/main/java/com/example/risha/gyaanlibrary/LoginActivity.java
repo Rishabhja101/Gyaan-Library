@@ -77,4 +77,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void CreateUser(View view){
+        GetCredentials();
+        Toast.makeText(LoginActivity.this, "asdfsdafsdafadsfghtyrkjyutmkyuilyuilkuiykyuik.", Toast.LENGTH_SHORT).show();
+    }
+
+
 }
