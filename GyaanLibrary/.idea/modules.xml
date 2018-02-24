@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GyaanLibrary.iml" filepath="$PROJECT_DIR$/GyaanLibrary.iml" />
-      <module fileurl="file://C:\Users\Kharbanda\Documents\GitHub\Gyaan-Library\GyaanLibrary\Gyaan-Library\GyaanLibrary\GyaanLibrary.iml" filepath="C:\Users\Kharbanda\Documents\GitHub\Gyaan-Library\GyaanLibrary\Gyaan-Library\GyaanLibrary\GyaanLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Kharbanda\Documents\GitHub\Gyaan-Library\GyaanLibrary\Gyaan-Library\GyaanLibrary\app\app.iml" filepath="C:\Users\Kharbanda\Documents\GitHub\Gyaan-Library\GyaanLibrary\Gyaan-Library\GyaanLibrary\app\app.iml" />
     </modules>
   </component>
 </project>
