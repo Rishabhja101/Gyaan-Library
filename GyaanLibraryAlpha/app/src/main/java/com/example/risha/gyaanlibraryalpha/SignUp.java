@@ -40,64 +40,83 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
-    public void validate(View view)
-    {
+    public void validate(View view) {
         String firstName;
         String lastName;
         String username;
         String password;
         String repeatPassword;
         boolean valid = true;
-        EditText firstNameText = (EditText)findViewById(R.id.firstName);
+        EditText firstNameText = (EditText) findViewById(R.id.firstName);
         username = firstNameText.getText().toString();
-        EditText lastNameText = (EditText)findViewById(R.id.lastName);
+        EditText lastNameText = (EditText) findViewById(R.id.lastName);
         password = lastNameText.getText().toString();
-        EditText usernameText = (EditText)findViewById(R.id.username);
+        EditText usernameText = (EditText) findViewById(R.id.username);
         username = usernameText.getText().toString();
-        EditText passwordText = (EditText)findViewById(R.id.password);
+        EditText passwordText = (EditText) findViewById(R.id.password);
         password = passwordText.getText().toString();
-        EditText repeatPasswordText = (EditText)findViewById(R.id.repeatPassord);
-        username = repeatPasswordText.getText().toString();
+        EditText repeatPasswordText = (EditText) findViewById(R.id.repeatPassord);
+        repeatPassword = repeatPasswordText.getText().toString();
 
-        if (firstNameText.length() == 0)
-        {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+        if (firstNameText.getText().toString().length() == 0) {
+            Toast.makeText(SignUp.this, "First Name is required", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (lastNameText.length() == 0)
-        {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+        if (lastNameText.getText().toString().length() == 0) {
+            Toast.makeText(SignUp.this, "Last Name is required", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (usernameText.length() == 0)
-        {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+        if (username.length() == 0) {
+            Toast.makeText(SignUp.this, "Username is required", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (password.length() == 0)
-        {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+        if (password.length() == 0 || repeatPassword.length() == 0) {
+            Toast.makeText(SignUp.this, "Password is required", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (repeatPasswordText.length() == 0)
-        {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+        if (!password.contentEquals(repeatPassword)) {
+            Toast.makeText(SignUp.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (passwordText.equals(repeatPasswordText))
+        if (!usernameIsUnique(username))
         {
-            Toast.makeText(SignUp.this, "", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SignUp.this, "This username already exists", Toast.LENGTH_SHORT).show();
             valid = false;
         }
-        if (valid)
+        if (valid) {
             createAccount(firstNameText.getText().toString(), lastNameText.getText().toString(), usernameText.getText().toString(), passwordText.getText().toString());
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
     private String usernames;
     private String passwords;
+    private Boolean uniqueUsername;
 
-    private void createAccount(String firstName, String lastname, String username, String password)
-    {
+    private boolean usernameIsUnique(final String usernameString){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("username");
+        uniqueUsername = true;
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String tokens[] = dataSnapshot.getValue().toString().split(", ");
+                for (int i = 0; i < tokens.length; i++){
+                    if (tokens[i].equals(usernameString))
+                        uniqueUsername = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return uniqueUsername;
+    }
+
+    private void createAccount(String firstName, String lastname, String username, String password){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("user_" + username);

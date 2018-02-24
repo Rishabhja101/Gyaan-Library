@@ -6,11 +6,49 @@
     android:layout_height="match_parent"
     tools:context="com.example.risha.gyaanlibraryalpha.SplashScreen2">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@mipmap/splashimage"
+        android:id="@+id/splashImage"
+        android:layout_above="@+id/percentText"
+        android:layout_marginBottom="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Percent Text"
-        android:textSize="100sp"
-        android:id="@+id/textView"/>
+        android:textSize="50sp"
+        android:id="@+id/percentText"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/percentText"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar"
+        android:id="@+id/circleProgress"/>
+
+
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:background_progressbar_color="#FFCDD2"
+        app:background_progressbar_width="5dp"
+        app:progressbar_color="#F44336"
+        app:progressbar_width="10dp"
+        android:layout_above="@+id/circleProgress"
+        android:id="@+id/circleProgress2"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
