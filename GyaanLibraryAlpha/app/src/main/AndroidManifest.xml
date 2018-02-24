@@ -10,17 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashScreen"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+            android:name=".SplashScreen">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SignUp"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainPage"
+            android:label="@string/title_activity_main_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BookView"
+            android:label="@string/title_activity_book_view"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AccountInfo"
+            android:label="@string/title_activity_account_info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashScreen2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.risha.gyaanlibraryalpha;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String passwords[] = dataSnapshot.getValue().toString().split(", ");
                 if (userIndex < passwords.length && passwords[userIndex].equals(password)){
-                    Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
+                    Continue();
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_SHORT).show();
@@ -72,9 +73,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+    public void Continue(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void CreateUser(View view){
-        GetCredentials();
-        Toast.makeText(LoginActivity.this, "asdfsdafsdafadsfghtyrkjyutmkyuilyuilkuiykyuik.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, SignUp.class);
+        startActivity(intent);
     }
 
 
