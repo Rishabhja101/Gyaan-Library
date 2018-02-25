@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     int userIndex;
 
-    public void AttemptLogin(View view){
+    public void attemptLogin(View view){
         GetCredentials();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("username");
@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 while (userIndex < usernames.length && !usernames[userIndex].equals(username)){
                     userIndex++;
                 }
+                attemptLoginPart2();
             }
 
             @Override
@@ -53,7 +54,11 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        myRef = database.getReference("password");
+    }
+
+    public void attemptLoginPart2(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("password");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -62,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     Continue();
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "incorrect credentials", Toast.LENGTH_SHORT).show();
                 }
             }
 

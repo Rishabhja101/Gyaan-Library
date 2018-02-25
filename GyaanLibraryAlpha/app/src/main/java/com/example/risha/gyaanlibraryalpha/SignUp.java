@@ -20,7 +20,9 @@ import com.google.firebase.database.ValueEventListener;
 public class SignUp extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
+    private String usernames;
+    private String passwords;
+    private String oldUsernames[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SignUp extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        getUsernames();
     }
 
     public void validate(View view) {
@@ -90,22 +93,22 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private String usernames;
-    private String passwords;
-    private Boolean uniqueUsername;
+    private boolean usernameIsUnique(String usernameString){
+        for (int i = 0; i < oldUsernames.length; i++){
+            if (oldUsernames[i].equals(usernameString)){
+                return false;
+            }
+        }
+        return true;
+    }
 
-    private boolean usernameIsUnique(final String usernameString){
+    private void getUsernames(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("username");
-        uniqueUsername = true;
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String tokens[] = dataSnapshot.getValue().toString().split(", ");
-                for (int i = 0; i < tokens.length; i++){
-                    if (tokens[i].equals(usernameString))
-                        uniqueUsername = false;
-                }
+                oldUsernames = dataSnapshot.getValue().toString().split(", ");
             }
 
             @Override
@@ -113,7 +116,6 @@ public class SignUp extends AppCompatActivity {
 
             }
         });
-        return uniqueUsername;
     }
 
     private void createAccount(String firstName, String lastname, String username, String password){
