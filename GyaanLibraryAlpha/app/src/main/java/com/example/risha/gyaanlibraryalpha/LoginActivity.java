@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     Continue();
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void Continue(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 
