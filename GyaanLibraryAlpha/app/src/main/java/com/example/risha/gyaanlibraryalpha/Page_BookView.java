@@ -8,18 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by risha on 2/25/2018.
+ * Created by risha on 2/27/2018.
  */
 
-public class Page_Checkout extends Fragment {
+public class Page_BookView extends Fragment{
     View myView;
+    //TextView
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        myView = inflater.inflate(R.layout.page_chechout, container, false);
+        myView = inflater.inflate(R.layout.page_book_view, container, false);
         return myView;
     }
-
-
 }

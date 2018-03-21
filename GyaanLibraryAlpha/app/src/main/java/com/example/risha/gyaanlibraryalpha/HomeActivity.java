@@ -18,6 +18,8 @@ import android.view.View;
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Class_Member user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,10 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new Map());
+
+        Bundle recievedData = getIntent().getExtras();
+        String username = recievedData.getString("username");
+        user = new Class_Member(username);
     }
 
     @Override
@@ -85,17 +91,17 @@ public class HomeActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
         if (id == R.id.nav_myAccount) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_MyAccount()).commit();
         } else if (id == R.id.nav_home) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Home()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_Home()).commit();
         } else if (id == R.id.nav_catalog) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_Catalog()).commit();
         } else if (id == R.id.nav_libraryMap) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Map()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_LibraryMap()).commit();
         } else if (id == R.id.nav_checkOut) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_Checkout()).commit();
         } else if (id == R.id.nav_settings) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new Page_Settings()).commit();
         } else if (id == R.id.nav_signout) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);

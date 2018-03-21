@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void Continue(){
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("username", username);
         startActivity(intent);
     }
 
